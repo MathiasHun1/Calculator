@@ -24,19 +24,28 @@
     justify-content: space-around;
 }
 
-#screen :nth-child(1) {
-    border: 1px solid green;
+#secondary-nums {
     width: 100%;
-    text-align: end;
-    padding-right: 1em;
-    font-size: 20px;
+    border: 1px solid green;
+    display: flex;
+    justify-content: end;
+    padding: 2px 20px;
 }
 
-#screen :nth-child(2) {
+#secondary-nums p {
+    padding: 5px;
+}
+
+#main-nums {
     border: 1px solid green;
     width: 100%;
     font-size: 40px;
     padding-left: 1rem;
+    display: flex;
+}
+
+#main-nums p {
+    padding: 5px;
 }
 
 #buttons-container {
@@ -71,5 +80,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
