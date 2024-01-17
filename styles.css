@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#calc-body {
+    width: 450px;
+    height: 600px;
+    border: 2px solid;
+    margin: 8em auto;
+    padding: 2em;
+}
+
+#screen {
+    border: 1px solid red;
+    font-weight: bold;
+    height: calc(30%);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#screen :nth-child(1) {
+    border: 1px solid green;
+    width: 100%;
+    text-align: end;
+    padding-right: 1em;
+    font-size: 20px;
+}
+
+#screen :nth-child(2) {
+    border: 1px solid green;
+    width: 100%;
+    font-size: 40px;
+    padding-left: 1rem;
+}
+
+#buttons-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid red;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1em;
+    height: calc(50%);
+
+}
+
+#ac-del-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#ac-del-container div {
+    width: calc(50%);
+    padding: 10px;
+    border: 1px solid green;
+}
+
+.button {
+    border: 1px solid green;
+    width: calc(23%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
