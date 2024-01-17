@@ -1,18 +1,23 @@
 
 const buttonsCont = document.querySelector('#buttons-container');
+const numberButton = document.querySelectorAll('.button.number');
 const mainNums = document.querySelector('#main-nums');
 const firstNum = document.querySelector('#first-num');
 const lastNum = document.querySelector('#last-num');
 const operator = document.querySelector('#operator');
+const operatorButton = document.querySelectorAll('.button.operator');
 const operatorsArr = ['*', '/', '+', '-'];
-const result = document.querySelector('#result');
+const resultButton = document.querySelector('.button.result');
 
 let firstNumber;
+let firstArr = [];
 let lastNumber;
+let lastArr = [];
 let op;
 let firstNumberFlag = false;
 let lastNumberflag = false;
 let opFlag = false;
+let result;
 let resultFlag = false;
 
 function add (a, b) {
@@ -38,11 +43,37 @@ function operate(a, b, c, ) {
     if (b === '/') return divide(a, c);
 }
 
-document.addEventListener('click', (e) => {
-
-    if (firstNumberFlag === false &&
-        lastNumberflag === false &&
-        opFlag === false) {
-            firstNumber = e.target.outerText;       
+numberButton.forEach(element => {
+    element.addEventListener('click', (e) => {
+        if (firstNumberFlag === false) {
+            firstArr.push(e.target.outerText);    
+            console.log('first number: ' + firstArr);
+        } else if (firstNumberFlag === true && opFlag === true) {
+            lastArr.push(e.target.outerText);
+            console.log('last number: ' + lastArr);
         }
+    });
+});
+
+operatorButton.forEach(element => {
+    element.addEventListener('click', (e) => {
+        if (opFlag === false) {
+            firstNumberFlag = true;
+            op = e.target.outerText
+            opFlag = true;
+            console.log(op)
+        }
+    })
 })
+
+resultButton.addEventListener('click', () => {
+    if (firstNumberFlag === true && 
+        opFlag === true && 
+        lastArr.length !== 0) {
+            firstNumber = parseInt(firstArr.join(''));
+            lastNumber = parseInt(lastArr.join(''));
+            result = operate(firstNumber, op, lastNumber);
+            console.log(result)
+    }
+})
+
