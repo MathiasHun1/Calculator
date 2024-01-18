@@ -2,8 +2,7 @@
 const buttonsCont = document.querySelector('#buttons-container');
 const numberButton = document.querySelectorAll('.button.number');
 const mainNums = document.querySelector('#main-nums');
-const firstNum = document.querySelector('#first-num');
-const lastNum = document.querySelector('#last-num');
+const mainNumText = document.querySelector('#main-nums>p');
 const operator = document.querySelector('#operator');
 const operatorButton = document.querySelectorAll('.button.operator');
 const operatorsArr = ['*', '/', '+', '-'];
@@ -45,11 +44,16 @@ function operate(a, b, c, ) {
 
 numberButton.forEach(element => {
     element.addEventListener('click', (e) => {
-        if (firstNumberFlag === false) {
-            firstArr.push(e.target.outerText);    
+        if (firstNumberFlag === false &&
+            resultFlag === false) {
+            firstArr.push(e.target.outerText);
+            mainNumText.textContent = firstArr.join('');
             console.log('first number: ' + firstArr);
-        } else if (firstNumberFlag === true && opFlag === true) {
+        } else if (firstNumberFlag === true && 
+            opFlag === true &&
+            resultFlag === false) {
             lastArr.push(e.target.outerText);
+            mainNumText.textContent = lastArr.join('');
             console.log('last number: ' + lastArr);
         }
     });
@@ -61,6 +65,7 @@ operatorButton.forEach(element => {
             firstNumberFlag = true;
             op = e.target.outerText
             opFlag = true;
+            mainNumText.textContent = op;
             console.log(op)
         }
     })
@@ -70,9 +75,12 @@ resultButton.addEventListener('click', () => {
     if (firstNumberFlag === true && 
         opFlag === true && 
         lastArr.length !== 0) {
+            lastNumberflag = true;
+            resultFlag = true;
             firstNumber = parseInt(firstArr.join(''));
             lastNumber = parseInt(lastArr.join(''));
             result = operate(firstNumber, op, lastNumber);
+            mainNumText.textContent = result;
             console.log(result)
     }
 })
