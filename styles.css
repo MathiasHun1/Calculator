@@ -24,7 +24,7 @@
     justify-content: space-around;
 }
 
-#secondary-nums {
+#secondary-screen {
     width: 100%;
     border: 1px solid green;
     display: flex;
@@ -32,11 +32,11 @@
     padding: 2px 20px;
 }
 
-#secondary-nums p {
+#secondary-screen p {
     padding: 5px;
 }
 
-#main-nums {
+#main-screen {
     border: 1px solid green;
     width: 100%;
     font-size: 40px;
@@ -46,7 +46,7 @@
     justify-content: end;
 }
 
-#main-nums p {
+#main-screen p {
     padding: 5px;
 }
 
@@ -76,7 +76,7 @@
     border: 1px solid green;
 }
 
-.button {
+.button, .dot {
     border: 1px solid green;
     width: calc(23%);
     display: flex;
