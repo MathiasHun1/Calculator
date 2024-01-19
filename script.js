@@ -12,6 +12,7 @@ let operator = ''
 let result = ''
 let isResult = false
 let mainText = mainScreen.textContent
+const pattern = /\./
 
 // Event listeners
 operationButton.forEach(button => {
@@ -38,15 +39,27 @@ function updateScreen(input) {
 
 function updateNumber(input) {
     if (operator === '') {
-        mainScreen.textContent += input
-        firstNum = parseFloat(mainScreen.textContent)
+        if (pattern.test(mainScreen.textContent) && pattern.test(input)) {
+            return
+        } else {
+            mainScreen.textContent += input
+            firstNum = parseFloat(mainScreen.textContent)
+        }
     } else if (operator !== '') {
         if (mainScreen.textContent !== '' && lastNum === '') {
-            mainScreen.textContent = input
-            lastNum = parseFloat(mainScreen.textContent)
+            if (pattern.test(mainScreen.textContent) && pattern.test(input)) {
+                return
+            } else {
+                mainScreen.textContent = input
+                lastNum = parseFloat(mainScreen.textContent)
+            }
         } else if (lastNum !== '') {
-            mainScreen.textContent += input
-            lastNum = parseFloat(mainScreen.textContent)
+            if (pattern.test(mainScreen.textContent) && pattern.test(input)) {
+                return
+            } else {
+                mainScreen.textContent += input
+                lastNum = parseFloat(mainScreen.textContent)
+            }
         }
     }
 }
