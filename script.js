@@ -28,14 +28,7 @@ resultButton.addEventListener('click', () => {
     }
 })
 
-clearButton.addEventListener('click', () => {
-    firstNum = ''
-    lastNum = ''
-    operator = ''
-    result = ''
-    isResult = false
-    mainScreen.textContent = ''
-})
+clearButton.addEventListener('click', clear)
 
 delButton.addEventListener('click', del)
 
@@ -44,7 +37,7 @@ delButton.addEventListener('click', del)
 
 // functions
 function updateScreen(input) {
-    if (!isNaN(parseInt(input))) {updateNumber(input)}
+    if (!isNaN(parseFloat(input)) || input === '.') {updateNumber(input)}
     if (operatorArr.includes(input)) {updateOp(input)}
 }
 
@@ -52,14 +45,14 @@ function updateScreen(input) {
 function updateNumber(input) {
     if (operator === '') {
         mainScreen.textContent += input
-        firstNum = parseInt(mainScreen.textContent)
+        firstNum = parseFloat(mainScreen.textContent)
     } else if (operator !== '') {
         if (mainScreen.textContent !== '' && lastNum === '') {
             mainScreen.textContent = input
-            lastNum = parseInt(mainScreen.textContent)
+            lastNum = parseFloat(mainScreen.textContent)
         } else if (lastNum !== '') {
             mainScreen.textContent += input
-            lastNum = parseInt(mainScreen.textContent)
+            lastNum = parseFloat(mainScreen.textContent)
         }
     }
     console.log('firstNum: ' + firstNum)
@@ -70,7 +63,6 @@ function updateOp (input) {
     if (firstNum === '') {
         return
     } else if (firstNum !== '' && lastNum === '') {
-        mainScreen.textContent = input
         operator = input
     } else if (firstNum !== '' && operator !== '' && lastNum !== '') {
         result = operate(firstNum, lastNum, operator)
@@ -82,6 +74,15 @@ function updateOp (input) {
     }
 }
 
+function clear() {
+    firstNum = ''
+    lastNum = ''
+    operator = ''
+    result = ''
+    isResult = false
+    mainScreen.textContent = ''
+}
+
 function del() {
     if (firstNum === '') {
         return
@@ -90,19 +91,21 @@ function del() {
         mainScreen.textContent = ''
     } else if (firstNum !=='' && operator !== '' && lastNum === '') {
         operator = ''
-        mainScreen.textContent = ''
+        
     } else if (firstNum !=='' && operator !== '' && lastNum !== '') {
         lastNum = ''
-        mainScreen.textContent = operator
-    }
-    
+    }   
 }
-
-
 
 function operate (a, b, operator) {
     if (operator === '+') return a + b
     if (operator === '-') return a - b
     if (operator === '*') return a * b
-    if (operator === '/') return a / b 
+    if (operator === '/') {
+        if (lastNum === 0) {
+            alert("You can't do that")
+            clear()
+            return
+        } else return a / b
+    }
 }
