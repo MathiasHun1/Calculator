@@ -76,7 +76,7 @@
     border: 1px solid green;
 }
 
-.button, .dot {
+.button, .result {
     border: 1px solid green;
     width: calc(23%);
     display: flex;
