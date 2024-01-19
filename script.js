@@ -97,15 +97,15 @@ function del() {
     }   
 }
 
-function operate (a, b, operator) {
-    if (operator === '+') return a + b
-    if (operator === '-') return a - b
-    if (operator === '*') return a * b
+function operate (a, b, operator, precision = 7) {
+    if (operator === '+') return (a + b).toFixed(precision)
+    if (operator === '-') return (a - b).toFixed(precision)
+    if (operator === '*') return (a * b).toFixed(precision)
     if (operator === '/') {
         if (lastNum === 0) {
             alert("You can't do that")
             clear()
             return
-        } else return a / b
+        } else return (a / b).toFixed(precision)
     }
 }
