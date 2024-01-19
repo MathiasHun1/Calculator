@@ -16,7 +16,6 @@ let mainText = mainScreen.textContent
 // Event listeners
 operationButton.forEach(button => {
     button.addEventListener('click', (e) => {
-        console.log(e.target.textContent)
         updateScreen(e.target.textContent)       
     })
 })
@@ -29,18 +28,13 @@ resultButton.addEventListener('click', () => {
 })
 
 clearButton.addEventListener('click', clear)
-
 delButton.addEventListener('click', del)
-
-
-
 
 // functions
 function updateScreen(input) {
     if (!isNaN(parseFloat(input)) || input === '.') {updateNumber(input)}
     if (operatorArr.includes(input)) {updateOp(input)}
 }
-
 
 function updateNumber(input) {
     if (operator === '') {
@@ -55,8 +49,6 @@ function updateNumber(input) {
             lastNum = parseFloat(mainScreen.textContent)
         }
     }
-    console.log('firstNum: ' + firstNum)
-    console.log('lastNum: ' + lastNum)    
 }
 
 function updateOp (input) {
